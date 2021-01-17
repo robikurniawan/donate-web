@@ -2,24 +2,26 @@
     <div class="navbar-header">
         <div class="d-flex">
             <!-- LOGO -->
+            
             <div class="navbar-brand-box">
                 <a href="{{ route('dashboard') }}" class="logo logo-dark">
-                        <span class="logo-sm">
-                            <img src="{{ asset('uploads/'.profil()->logo.'') }}" alt="" height="22">
-                        </span>
+                    <span class="logo-sm">
+                        <img src="{{ asset('uploads/'.profil()->logo.'') }}" alt="" height="22">
+                    </span>
                     <span class="logo-lg">
-                            <img src="{{ asset('uploads/'.profil()->logo.'') }}" alt="" height="20">
-                        </span>
+                        <img src="{{ asset('uploads/'.profil()->logo.'') }}" alt="" height="20">
+                    </span>
                 </a>
 
                 <a href="{{ route('dashboard') }}" class="logo logo-light">
-                        <span class="logo-sm">
-                            <img src="{{ asset('uploads/'.profil()->logo.'') }}" alt="" height="22">
-                        </span>
+                    <span class="logo-sm">
+                        <img src="{{ asset('uploads/'.profil()->logo.'') }}" alt="" height="22">
+                    </span>
                     <span class="logo-lg">
-                            <img src="{{ asset('uploads/'.profil()->logo.'') }}" alt="" height="20">
-                        </span>
+                        <img src="{{ asset('uploads/'.profil()->logo.'') }}" alt="" height="20">
+                    </span>
                 </a>
+
             </div>
 
             <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect vertical-menu-btn">
@@ -38,19 +40,18 @@
         <div class="d-flex">
 
             <div class="dropdown d-inline-block d-lg-none ml-2">
-                <button type="button" class="btn header-item noti-icon waves-effect"
-                        id="page-header-search-dropdown"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="uil-search"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
-                     aria-labelledby="page-header-search-dropdown">
+                    aria-labelledby="page-header-search-dropdown">
 
                     <form class="p-3">
                         <div class="form-group m-0">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search ..."
-                                       aria-label="Recipient's username">
+                                    aria-label="Recipient's username">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i>
                                     </button>
@@ -64,26 +65,25 @@
 
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user"
-                         src="https://ui-avatars.com/api/?background=cef2ef&color=249286&name={{ auth()->user()->name }} "
-                         alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ml-1 font-weight-medium font-size-15"> {{ auth()->user()->name }}  </span>
+                        src="https://ui-avatars.com/api/?background=cef2ef&color=249286&name={{ auth()->user()->name }} "
+                        alt="Header Avatar">
+                    <span class="d-none d-xl-inline-block ml-1 font-weight-medium font-size-15">
+                        {{ auth()->user()->name }} </span>
                     <i class="uil-angle-down d-none d-xl-inline-block font-size-15"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
                     <!-- item-->
-                    <a class="dropdown-item" href="#"><i
+                    <a class="dropdown-item" href="{{ route('users.edit',auth()->user()->id ) }}"><i
                             class="uil uil-user-circle font-size-18 align-middle text-muted mr-1"></i> <span
                             class="align-middle"> Profile</span></a>
 
-                    <a class="dropdown-item d-block" href="#"><i
-                            class="uil uil-cog font-size-18 align-middle mr-1 text-muted"></i> <span
-                            class="align-middle">Pengaturan</span> </a>
-                    <a class="dropdown-item" href="#"><i
+                    <a class="dropdown-item" href="{{ route('users.edit',auth()->user()->id ) }}"><i
                             class="uil uil-lock-alt font-size-18 align-middle mr-1 text-muted"></i> <span
                             class="align-middle">Ubah Password</span></a>
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="uil uil-sign-out-alt font-size-18 align-middle mr-1 text-muted"></i>
                         <span class="align-middle">Keluar </span>
                     </a>

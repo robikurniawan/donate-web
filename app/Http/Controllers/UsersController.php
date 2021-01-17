@@ -15,21 +15,20 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
-        return view('pages.admin.users.index');
+        return view('app.users.index');
     }
 
     public function json()
     {
-        $data = User::where('role','!=','superadmin')->get();
-
+        $data = User::all();
+        
         return Datatables::of($data)
             ->addIndexColumn()
 
             ->addColumn('action', function($row){
                 $editUrl = url('users/edit/'.$row->id);
                 $reset = url('users/reset/'.$row->id);
-                $btn = '<a href="'.$editUrl.'" data-toggle="tooltip"  data-original-title="Reset Password" class="edit btn btn-outline-primary btn-sm mr-1"><i class="fa fa-lock-open"></i> Reset Password</a>';
-                $btn .= '<a href="'.$editUrl.'" data-toggle="tooltip"  data-original-title="Edit" class="edit btn btn-warning btn-sm"><i class="uil-edit-alt"></i> Edit</a>';
+                $btn = '<a href="'.$editUrl.'" data-toggle="tooltip"  data-original-title="Edit" class="edit btn btn-warning btn-sm"><i class="uil-edit-alt"></i> Edit</a>';
                 $btn .= ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Hapus" class="btn btn-danger btn-sm delete"><i class="uil-trash"></i> Hapus</a>';
                 return $btn;
             })
@@ -40,18 +39,31 @@ class UsersController extends Controller
 
     public function create()
     {
-        return view('pages.admin.users.create');
+        return view('app.users.create');
     }
 
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email'  => 'required|unique:users' ,
+            'password'  => 'required',
+            'role'  => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput($request->input());
+        }
+
+
         User::create([
             'name' => $request->name,
-            'jabatan' => $request->jabatan,
             'email' => $request->email,
-            'password' => Hash::make('12345'),
-            'role' => $request->role,
-            'sub_role' => $request->sub_role,
+            'password' => Hash::make($request->password),
+            'role' => $request->role
         ]);
 
         return redirect()->route('users.index')->with('success','User created successfully.');
@@ -61,14 +73,14 @@ class UsersController extends Controller
     public function edit(Request $request, $id)
     {
         $data['user'] = User::where('id', $id)->first();
-        return view('pages.admin.users.edit',$data);
+        return view('app.users.edit',$data);
     }
 
 
     public function reset(Request $request, $id)
     {
         $data['user'] = User::where('id', $id)->first();
-        return view('pages.admin.users.reset',$data);
+        return view('app.users.reset',$data);
     }
 
 
@@ -80,18 +92,47 @@ class UsersController extends Controller
     }
 
 
-    public function update(Request $request, User $id)
+    public function update(Request $request)
     {
-        $data = request()->validate([
+        $id = $request->id; 
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'jabatan' =>'required',
-            'email' => 'required',
-            'role' => 'required',
+            'email'=>"required|email|unique:users,email,$id,id",
+            'role'  => 'required',
         ]);
 
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput($request->input());
+        }
+
+        $data = array('name' => $request->name, 'email' => $request->email , 'role' => $request->role );
+
         User::where('id', $request->id)->update($data);
-        return redirect()->route('users.index')->with('success','User updated successfully.');
+        return redirect()->route('users.edit',$request->id)->with('success','User updated successfully.');
     }
+
+
+    public function updatePassword(Request $request, User $id)
+    {
+        request()->validate([
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required'
+        ]);
+
+        $post = array('password' => Hash::make($request->password));
+
+        User::where('id', $request->id)->update($post);
+        return redirect()->route('users.edit',$request->id)->with('success','Updated Password Successfully.');
+    }
+
+
+
+
+
+    
 
     public function destroy($id)
     {

@@ -83,6 +83,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
         Route::get('reset/{id}', 'UsersController@reset')->name('users.reset');
         Route::get('resetProcess', 'UsersController@resetProcess')->name('users.reset-process');
         Route::post('update', 'UsersController@update')->name('users.update');
+        Route::post('updatePassword', 'UsersController@updatePassword')->name('users.update-password');
         Route::get('delete/{id}', 'UsersController@destroy')->name('users.destroy');
         Route::get('json', 'UsersController@json')->name('users.json');
     });

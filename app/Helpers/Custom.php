@@ -132,11 +132,6 @@ function jk($string)
     return $result;
 }
 
-function usia($tglLahir)
-{
-    $years = \Carbon::parse($tglLahir)->age;
-    return $years . " Tahun";
-}
 
 function removeDot($str)
 {

@@ -47,15 +47,6 @@
                         <span>Pengeluaran </span>
                     </a>
                 </li>
-
-
-                <li>
-                    <a href="{{  route('setting.index') }}" class="waves-effect">
-                        <i class="uil-shutter-alt"></i>
-                        <span>Profil</span>
-                    </a>
-                </li>
-
                 <li>
                     <a href="{{ route('slide.index') }}" class="waves-effect">
                         <i class="uil-images"></i>
@@ -64,17 +55,22 @@
                 </li>
 
 
-                <li class="menu-title">Data Master</li>
-
-
-        
+                @if(auth()->user()->role == "admin")
+                <li class="menu-title">Data Master  </li>
+                <li>
+                    <a href="{{  route('setting.index') }}" class="waves-effect">
+                        <i class="uil-shutter-alt"></i>
+                        <span>Profil</span>
+                    </a>
+                </li>
 
                 <li>
-                    <a href="#">
+                    <a href="{{ route('users.index') }}">
                         <i class="uil-user"></i>
                         <span>Manajemen User</span>
                     </a>
                 </li>
+                @endif
 
 
 
