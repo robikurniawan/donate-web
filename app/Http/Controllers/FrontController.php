@@ -18,6 +18,8 @@ class FrontController extends Controller
     public function index()
     {
         $data['total'] = Donatur::sum('jumlah');
+        $data['totalKeluar'] = Pengeluaran::sum('jumlah');
+
         $data['donaturs'] = Donatur::orderBy('id','DESC')->limit('20')->get();
         $data['keluars'] = Pengeluaran::orderBy('id','DESC')->limit('20')->get();
         $data['slides'] = Slide::orderBy('id','DESC')->get();
@@ -36,7 +38,7 @@ class FrontController extends Controller
         return view('public.disbursement');
     }
 
-    
+
     public function jsonDonatur()
     {
         $data = Donatur::all();
@@ -82,7 +84,7 @@ class FrontController extends Controller
 
 
 
-    
+
     public function info()
     {
         return view('public.info');

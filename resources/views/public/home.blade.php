@@ -5,20 +5,17 @@
         <div class="banner" style="padding:30px 10px;">
             <h1>{{ profil()->judul }}</h1>
             <p>
-               {{ profil()->deskripsi }} 
+               {{ profil()->deskripsi }}
             </p>
             <br>
-            <h5>Donasi Terkumpul</h5>
-            <h1> 
-                <div class="counter" data-count="{{ $total }}"></div>
-            </h1>
-            
+
+
             <a href="#" class="btn btn-success">
-                <i class="uil-whatsapp"></i> Bagikan ke WhatsApp 
+                <i class="uil-whatsapp"></i> Bagikan ke WhatsApp
             </a>
 
             <a href="#" class="btn btn-primary">
-                <i class="uil-facebook"></i> Bagikan ke Facebook 
+                <i class="uil-facebook"></i> Bagikan ke Facebook
             </a>
 
         </div>
@@ -36,8 +33,47 @@
                 @endforeach
             </div>
         </div>
-
     </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card bg-info">
+            <div class="card-body">
+                <div>
+                    <h1 class="text-white">
+                        <div class="counter" data-count="{{ $total }}">Rp.0</div>
+                    </h1>
+                    <p class="text-white mb-0">Total Donasi</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-warning">
+            <div class="card-body">
+                <div>
+                    <h1 class="text-dark">
+                        <div class="counter" data-count="{{ $totalKeluar }}">Rp.0</div>
+                    </h1>
+                    <p class="text-dark mb-0">Total Pengeluaran</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-success">
+            <div class="card-body ">
+                <div>
+                    <h1 class="text-white">
+                        <div class="counter" data-count="{{ $total - $totalKeluar }}">Rp.0</div>
+                    </h1>
+                    <p class="text-white mb-0">Sisa Dana</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <div class="card mt-4">
@@ -46,24 +82,24 @@
             <li class="nav-item waves-effect waves-light">
                 <a class="nav-link active" data-toggle="tab" href="#navpills2-home" role="tab">
                     <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
-                    <span class="d-none d-sm-block">Donatur</span> 
+                    <span class="d-none d-sm-block">Donatur</span>
                 </a>
             </li>
             <li class="nav-item waves-effect waves-light">
                 <a class="nav-link" data-toggle="tab" href="#navpills2-message" role="tab">
                     <span class="d-block d-sm-none"><i class="far fa-envelope"></i></span>
-                    <span class="d-none d-sm-block">Disbursement</span>   
+                    <span class="d-none d-sm-block">Disbursement</span>
                 </a>
             </li>
 
             <li class="nav-item waves-effect waves-light">
                 <a class="nav-link" data-toggle="tab" href="#navpills2-profile" role="tab">
                     <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
-                    <span class="d-none d-sm-block">Rekening Donasi</span> 
+                    <span class="d-none d-sm-block">Rekening Donasi</span>
                 </a>
             </li>
-           
-            
+
+
         </ul>
 
         <!-- Tab panes -->
@@ -79,19 +115,19 @@
                                 </td>
                                 <td>
                                     <h6 class="font-size-15 mb-1 font-weight-normal">{{  $item->nama_donatur }}  <small><i class="uil-calendar"></i>  {{  tgl_indo($item->tgl_donasi) }} </small> </h6>
-                                   
+
                                     <b> Donasi: Rp. {{ number_format($item->jumlah) }} </b>
                                 </td>
-                            
+
                             </tr>
-                          
+
                             @endforeach
                         </tbody>
                     </table>
 
                     <div class="text-center">
                         <a href="{{  route('public.donatur') }}"> Selengkapnya.. </a>
-                    </div> 
+                    </div>
                 </div>
             </div>
             <div class="tab-pane " id="navpills2-message" role="tabpanel">
@@ -112,18 +148,18 @@
                                     {{ $item->item }}
                                 </td>
                                 <td>
-                                    Rp. {{ number_format($item->jumlah) }} 
+                                    Rp. {{ number_format($item->jumlah) }}
                                 </td>
-                            
+
                             </tr>
-                          
+
                             @endforeach
                         </tbody>
                     </table>
 
                     <div class="text-center">
                         <a href="{{  route('public.disbursement') }}"> Selengkapnya.. </a>
-                    </div> 
+                    </div>
                 </div>
             </div>
 
@@ -142,7 +178,7 @@
                             <label for="">  Atas Nama :  </label>
                             <h5>{{ profil()->an_bank }}</h5>
                         </div>
-        
+
                     </div>
                     <div class="col-md-6">
                         <h6> <i class="uil-map-marker"></i> {{ profil()->alamat }} </h6>
@@ -151,7 +187,7 @@
 
                 </div>
             </div>
-            
+
 
         </div>
     </div>

@@ -128,12 +128,7 @@ class UsersController extends Controller
         return redirect()->route('users.edit',$request->id)->with('success','Updated Password Successfully.');
     }
 
-
-
-
-
     
-
     public function destroy($id)
     {
         $data = User::where('id', $id)->delete();
