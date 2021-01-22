@@ -38,14 +38,14 @@
 
 
                                             <div class="table-responsive">
-                                                <table class="table table-hover  nowrap" id="pengeluaran">
+                                                <table class="table table-hover  " id="pengeluaran">
                                                     <thead class="text-center">
                                                     <tr>
                                                         <th width="2%">No.</th>
                                                         <th>Item</th>
                                                         <th>Jumlah</th>
                                                         <th>Tanggal</th>
-                                                        {{-- <th>Lampiran</th> --}}
+                                                         <th>Lampiran</th>
                                                         <th width="10%">#</th>
                                                     </tr>
                                                     </thead>
@@ -103,7 +103,8 @@
                     {data: 'item', name: 'item'},
                     {data: 'jumlahKeluar', name: 'jumlahKeluar'},
                     {data: 'tanggalKeluar', name: 'tanggalKeluar'},
-            
+                    {data: 'lampiran', name: 'lampiran'},
+
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
             });

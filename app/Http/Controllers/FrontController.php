@@ -77,7 +77,12 @@ class FrontController extends Controller
                 return  tgl_indo($row->tanggal);
             })
 
-            ->rawColumns(['jumlahKeluar','tanggalKeluar'])
+            ->addColumn('lampiran', function ($row) {
+                return '<a href="'.asset('uploads/'.$row->bukti.' ').' " target="_blank" class="btn btn-outline-primary">Lampiran</a>';
+            })
+
+
+            ->rawColumns(['jumlahKeluar','tanggalKeluar','lampiran'])
             ->make(true);
     }
 

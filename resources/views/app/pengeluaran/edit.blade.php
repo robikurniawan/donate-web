@@ -13,7 +13,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form id="form" method="POST" action="{{ route('pengeluaran.update')  }}" data-parsley-validate="">
+                            <form id="form" method="POST" action="{{ route('pengeluaran.update')  }}" data-parsley-validate="" enctype="multipart/form-data">
                                 @CSRF
                                 <input type="hidden" name="id" value="{{ $pengeluaran->id }}">
                                 <div class="form-group">
@@ -35,6 +35,15 @@
                                     <label>Tanggal  </label>
                                     <input type="date" name="tanggal" value="{{  $pengeluaran->tanggal }}" class="form-control" required data-parsley-trigger="keyup" autocomplete="off" />
                                 </div>
+
+                                <div class="form-group">
+                                    <label>Update Lampiran </label>
+                                    <input type="file" name="images" class="form-control-file">
+                                    <p>Lihat Lampiran <a href="{{ asset('uploads/'.$pengeluaran->bukti.'') }}" target="_blank"> Disini </a> </p>
+                                    <small>Kosongkan jika tidak ingin mengupdate lampiran </small>
+                                </div>
+
+
 
                                 <div class="form-group">
                                     <button type="submit" name="submit" id="submit" class="btn btn-primary"> Update </button>

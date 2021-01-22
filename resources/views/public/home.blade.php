@@ -132,12 +132,13 @@
             </div>
             <div class="tab-pane " id="navpills2-message" role="tabpanel">
                 <div class="table-responsive">
-                    <table class="table table-border table-centered table-nowrap">
+                    <table class="table table-border table-centered ">
                         <tr>
                             <th>No</th>
                             <th>Tanggal</th>
                             <th>Transaksi</th>
                             <th>Jumlah</th>
+                            <th>Lampiran</th>
                         </tr>
                         <tbody>
                             @foreach ($keluars as $item)
@@ -149,6 +150,9 @@
                                 </td>
                                 <td>
                                     Rp. {{ number_format($item->jumlah) }}
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-outline-primary" href="{{ asset('uploads/'.$item->bukti.'') }}" target="_blank"> Lampiran </a>
                                 </td>
 
                             </tr>

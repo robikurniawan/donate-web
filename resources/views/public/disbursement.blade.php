@@ -22,13 +22,14 @@
 
 
                     <div class="table-responsive">
-                        <table class="table table-hover  nowrap" id="donatur">
+                        <table class="table table-hover " id="donatur">
                             <thead class="text-center">
                             <tr>
                                 <th width="2%">No.</th>
                                 <th>Tanggal</th>
                                 <th>Item</th>
                                 <th>Jumlah</th>
+                                <th>Lampiran</th>
                             </tr>
                             </thead>
                         </table>
@@ -76,6 +77,7 @@
                     {data: 'tanggalKeluar', name: 'tanggalKeluar'},
                     {data: 'item', name: 'item'},
                     {data: 'jumlahKeluar', name: 'jumlahKeluar'},
+                    {data: 'lampiran', name: 'lampiran'},
                 ]
             });
 

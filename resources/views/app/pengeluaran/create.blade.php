@@ -13,7 +13,7 @@
             <div class="mb-5">
                 <div class="card">
                     <div class="card-body">
-                        <form id="form" method="POST" action="{{ route('pengeluaran.store')  }}" data-parsley-validate="">
+                        <form id="form" method="POST" action="{{ route('pengeluaran.store')  }}" data-parsley-validate="" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label>Nama Pengeluaran </label>
@@ -35,7 +35,10 @@
                                 <label>Tanggal Donasi </label>
                                 <input type="date" name="tanggal" class="form-control" required data-parsley-trigger="keyup" autocomplete="off" />
                             </div>
-
+                            <div class="form-group">
+                                <label>Upload Lampiran </label>
+                                <input type="file" name="images" class="form-control-file">
+                            </div>
 
                             <div class="form-group">
                                 <button type="submit" name="submit" id="load1" data-loading-text="<i class='fa fa-spinner fa-spin'></i> Processing " class="btn btn-primary"> Simpan </button>
